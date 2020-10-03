@@ -1,0 +1,5 @@
+fbpanel (7.0.10-lysmarine1) bionic; urgency=medium
+
+  * Build multiarch
+
+ -- frederic guilbault <2@0464.ca>  27 Sep 2020 00:00:00 -0400

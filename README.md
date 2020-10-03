@@ -2,19 +2,24 @@
 In order to make lysmarine updatable as possible. 
 This repo contain procedures and assets required to build and add to the lysmarine's PPA software that don't have any repository yet. 
 
+First, make sure you have the required dependencies :
+```
+sudo apt-get install build-essential devscripts lintian
+```
+
 
 ## rtl-ais
-The rtl-ais project is maintained in fork of it's original repository. 
-So far, @dgiardini have kindly accepted all PR concerning debian packaging but have no repository, so we only need to clone, build and upload to launchpad 
+The rtl-ais project is maintained in fork of it's original repository. So far, @dgiardini have kindly accepted all PR concerning debian packaging but have no repository, so we only need to clone, build and upload to launchpad 
 
 ###### Get source code
-``` 
+```
 git clone --depth 1 https://github.com/dgiardini/rtl-ais/ ./rtl-ais/rtl-ais
 ```
 
 ###### Build and sign source package
-``` 
-debuild -S -sa 
+```
+cd ./rtl-ais/rtl-ais
+debuild -S
 ```
 
 ###### upload the package to launchpad
@@ -36,12 +41,12 @@ create_ap is a dead project and have no debian package available.
 wget https://github.com/oblique/create_ap/archive/v0.4.6.tar.gz
 tar -xf v0.4.6.tar.gz
 rm v0.4.6.tar.gz
-mv create_ap-0.4.6/* createap-0.4.6/
+mv create_ap-0.4.6/* ./createap
 rm -r create_ap-0.4.6
 ```
 
 ###### Build and sign source package
-``` 
+```
 debuild -S -sa 
 ```
 

@@ -1,0 +1,12 @@
+createap (0.4.6-ppa2) bionic; urgency=medium
+
+  * fix controll file
+
+ -- frederic guilbault <2@0464.ca>  Thu, 27 sept 2020 00:00:00 -0000
+
+createap (0.4.6-ppa1) bionic; urgency=medium
+
+  * fix ubuntu version for launchpad
+
+ -- frederic guilbault <2@0464.ca>  Thu, 03 sept 2020 15:00:00 -0400
+

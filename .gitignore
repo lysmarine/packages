@@ -3,3 +3,14 @@
 rtl-ais/*
 !rtl-ais/.keep
 
+createap/*
+!createap/.keep
+!createap/debian
+
+fbpanel/*
+!fbpanel/.keep
+!fbpanel/debian
+
+pypilot/*
+!pypilot/.keep
+!pypilot/debian
