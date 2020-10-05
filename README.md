@@ -8,6 +8,7 @@ sudo apt-get install build-essential devscripts lintian
 ```
 
 
+
 ## rtl-ais
 The rtl-ais project is maintained in fork of it's original repository. So far, @dgiardini have kindly accepted all PR concerning debian packaging but have no repository, so we only need to clone, build and upload to launchpad 
 
@@ -20,17 +21,14 @@ git clone --depth 1 https://github.com/dgiardini/rtl-ais/ ./rtl-ais/rtl-ais
 ```
 cd ./rtl-ais/rtl-ais
 debuild -S
+#dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
 ```
 
 ###### upload the package to launchpad
 ```
-dput ppa:lysmarine/upstream-projects
+dput ppa:lysmarine/upstream-projects ../rtl-ais*_source.changes 
 ```
 
-###### ** Optionally build locale package **
-```
-debuild -us -uc
-```
 
 
 ## create_ap
@@ -38,22 +36,22 @@ create_ap is a dead project and have no debian package available.
 
 ###### Get the project source files 
 ```
-wget https://github.com/oblique/create_ap/archive/v0.4.6.tar.gz
-tar -xf v0.4.6.tar.gz
-rm v0.4.6.tar.gz
-mv create_ap-0.4.6/* ./createap
-rm -r create_ap-0.4.6
+git clone --depth 1 https://github.com/oblique/create_ap/ ./createap/createap/
+ln -s ../debian ./createap/createap/
 ```
 
 ###### Build and sign source package
 ```
-debuild -S -sa 
+cd ./createap/createap/
+debuild -S
+#dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
 ```
 
 ###### upload the package to launchpad
 ```
-dput ppa:lysmarine/upstream-projects
+dput ppa:lysmarine/upstream-projects ../createap_0.4.6-ppa2_source.changes 
 ```
+
 
 
 ## fbpanel ##
@@ -64,36 +62,39 @@ The lysmarine's fork of it apply the minimal amount of patches to make it still 
 meanwhile the packaging files are maintained in this repository. 
 
 ```
-git clone --depth 1 git clone https://github.com/lysmarine/fbpanel ./fbpanel/fbpanel
+git clone --depth 1 https://github.com/lysmarine/fbpanel ./fbpanel/fbpanel
+ln -s ../debian ./fbpanel/fbpanel/
 ```
 
-
-
-
-## building a package.  
-To build a package you must cd into the desired package (createap in this example)  
+###### Build and sign source package
 ```
-cd createap-4.0.6/
+cd ./fbpanel/fbpanel/
+debuild -S
+#dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
 ```
 
-#### Build a complete package for direct use. 
+###### upload the package to launchpad
 ```
-debuild -us -uc
+dput ppa:lysmarine/upstream-projects ../fbpanel_7.0.12_source.changes
 ```
-
-#### Prepare a source package for launchpad.
-```
-debuild -S -sa 
-```
-
 
 
 
 ## Notes: 
-How to sign your changes with your GPG key ID : 
+How to manually sign your changes with your GPG key ID : 
 ```
 https://techoverflow.net/2019/06/08/how-to-fix-dput-error-58-gpgme_op_verify/
 debsign -k [YOUR PGP FINGERPRINT] <filename>.changes
+```
+
+## Debugging. 
+
+If something fail on launchpad, you should receive an email with the logs of the build process. 
+From what I found the build process on launchpad looks like this 
+```
+dpkg-source -x  *.dsc
+tar -xf gcc-4.9.2.tar.xz
+tar -xf gdc-20141020.tar.xz
 ```
 
 

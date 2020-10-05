@@ -2,13 +2,13 @@
 # -*- makefile -*-
 #
 #  # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 CFLAGS=$(shell dpkg-buildflags --get CFLAGS)
 LDFLAGS=$(shell dpkg-buildflags --get LDFLAGS)
 LDFLAGS+="-z bindnow"
 
 %:
-	dh $@ 
+	dh $@
 
 override_dh_auto_configure:
 	./configure --prefix=/usr \
@@ -26,6 +26,6 @@ override_dh_fixperms:
 
 
 override_dh_install:
-	dh_install debian/terminal_color.svg usr/share/fbpanel/images 
+	dh_install debian/terminal_color.svg usr/share/fbpanel/images
 	dh_install debian/terminal_sketch.svg usr/share/fbpanel/images
 	dh_install
