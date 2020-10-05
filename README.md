@@ -10,7 +10,7 @@ sudo apt-get install build-essential devscripts lintian
 
 
 ## rtl-ais
-The rtl-ais project is maintained in fork of it's original repository. So far, @dgiardini have kindly accepted all PR concerning debian packaging but have no repository, so we only need to clone, build and upload to launchpad 
+The rtl-ais project is maintained in fork of its original repository. So far, @dgiardini have kindly accepted all PR concerning debian packaging but have no repository, so we only need to clone, build and upload to launchpad 
 
 ###### Get source code
 ```
@@ -22,13 +22,14 @@ git clone --depth 1 https://github.com/dgiardini/rtl-ais/ ./rtl-ais/rtl-ais
 cd ./rtl-ais/rtl-ais
 debuild -S
 #dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
+
 ```
 
 ###### upload the package to launchpad
 ```
 dput ppa:lysmarine/upstream-projects ../rtl-ais*_source.changes 
 ```
-
+dput ppa:lysmarine/rtl-ais <source.changes> 
 
 
 ## create_ap
@@ -37,7 +38,7 @@ create_ap is a dead project and have no debian package available.
 ###### Get the project source files 
 ```
 git clone --depth 1 https://github.com/oblique/create_ap/ ./createap/createap/
-ln -s ../debian ./createap/createap/
+cp -r ./createap/debian ./createap/createap/
 ```
 
 ###### Build and sign source package
@@ -49,7 +50,7 @@ debuild -S
 
 ###### upload the package to launchpad
 ```
-dput ppa:lysmarine/upstream-projects ../createap_0.4.6-ppa2_source.changes 
+dput ppa:lysmarine/upstream-projects ../createap_*-ppa2_source.changes 
 ```
 
 
@@ -63,7 +64,7 @@ meanwhile the packaging files are maintained in this repository.
 
 ```
 git clone --depth 1 https://github.com/lysmarine/fbpanel ./fbpanel/fbpanel
-ln -s ../debian ./fbpanel/fbpanel/
+cp -r ./fbpanel/debian ./fbpanel/fbpanel/
 ```
 
 ###### Build and sign source package
