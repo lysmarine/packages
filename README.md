@@ -7,6 +7,54 @@ First, make sure you have the required dependencies :
 sudo apt-get install build-essential devscripts lintian
 ```
 
+## lxpanel-gtk3
+
+###### Get source code
+```
+wget https://launchpad.net/~mati75/+archive/ubuntu/lubuntu-testing/+sourcefiles/lxpanel/0.10.0-2+ppa2/lxpanel_0.10.0-2+ppa2.debian.tar.xz
+7z x ./lxpanel_0.10.0-2+ppa2.debian.tar.xz
+tar -xf ./lxpanel_0.10.0-2+ppa2.debian.tar
+
+```
+
+###### Build and sign source package
+```
+sudo apt install gtk-doc-tools intltool libasound2-dev libiw-dev  libmenu-cache-dev libwnck-dev libfm-gtk-dev libxml2-dev libkeybinder-dev libindicator-dev
+sudo apt install libgtkd-3-dev libwnck-3-dev libcurl4-gnutls-dev libkeybinder-3.0-dev
+
+cd ./lxpanel-gtk3/lxpanel-gtk3
+```
+Replace this line: in /debian/rules
+```
+dh_auto_configure -- --enable-man --with-plugins=all,-netstat,-pager,-weather --disable-silent-rules --enable-indicator-support --enable-gtk3
+```
+
+```
+debuild -S
+#dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
+dput ppa:lysmarine/upstream-projects ../kplex_1.4.1_source.changes 
+```
+
+
+
+
+
+## kplex
+
+###### Get source code
+```
+git clone  https://github.com/FredericGuilbault/kplex.git ./kplex/kplex
+pushd ./kplex/kplex ; git checkout Feature/debianPackage ; popd 
+```
+
+###### Build and sign source package
+```
+cd ./kplex/kplex
+debuild -S
+#dpkg-buildpackage -rfakeroot -b -uc -us # ** Optionally build locale package **
+dput ppa:lysmarine/upstream-projects ../kplex_1.4.1_source.changes 
+```
+
 
 
 ## rtl-ais
